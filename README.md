@@ -4,13 +4,17 @@ Naive Clojure implementation of some regular expression and automaton
 algorithms from [Martin] \(John Martin, Introduction to Languages and
 the Theory of Computation, 4th edition, McGraw-Hill, 2010).
 
+Annotated source code is available at http://jhckragh.github.com/clj-dregaut/
+
+## Goals
+
 My goals for this project are twofold:
 
  1. To learn some Clojure.
 
  2. To make the code resemble the mathematical definitions.
 
-Efficiency is *not* a goal. Indeed, much of the implementation is
+Efficiency is **not** a goal. Indeed, much of the implementation is
 highly inefficient.
 
 ## Usage
