@@ -1,7 +1,7 @@
 # clj-dregaut
 
 Naive Clojure implementation of some regular expression and automaton
-algorithms from [Martin] (John Martin, Introduction to Languages and
+algorithms from [Martin] \(John Martin, Introduction to Languages and
 the Theory of Computation, 4th edition, McGraw-Hill, 2010).
 
 My goals for this project are twofold:
@@ -15,7 +15,7 @@ highly inefficient.
 
 ## Usage
 
-Is discouraged unless you don't care about efficiency.
+Is discouraged, unless you don't care about efficiency.
 
 ## Credits
 
