@@ -26,5 +26,5 @@
       (letfn [(step [queue]
                 (lazy-seq
                  (let [hd (peek queue), tl (pop queue)]
-                   (cons hd (step (apply conj tl (for [x xs] (str hd x))))))))]
+                   (cons hd (step (into tl (for [x xs] (str hd x))))))))]
         (step (conj clojure.lang.PersistentQueue/EMPTY ""))))))
