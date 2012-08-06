@@ -3307,12 +3307,21 @@ $(Q',\Sigma,[q_0],A',\delta')$, where</p>
                   (set/select #(not (empty? (set/intersection accept %))) equiv)
                   (fn [s c]
                     (let [q (first s)]
-                      (find-equivalence-class (delta q c) equiv)))))))))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#dregaut.util" name="dregaut.util"><h1 class="project-name">dregaut.util</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(ns dregaut.util)</pre></td></tr><tr><td class="docs">
+                      (find-equivalence-class (delta q c) equiv)))))))))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#dregaut.util" name="dregaut.util"><h1 class="project-name">dregaut.util</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Various set-theoretic operations.</p>
+</td><td class="codes"><pre class="brush: clojure">(ns dregaut.util)</pre></td></tr><tr><td class="docs"><p>Given two sets, $X$ and $Y$, this function outputs
+$$
+\{ \{x,y\} \mid x \in X \wedge y \in Y \wedge x \neq y \}.
+$$</p>
 </td><td class="codes"><pre class="brush: clojure">(defn uprod [xs ys]
-  (set (for [x xs, y ys :when (not= x y)] #{x y})))</pre></td></tr><tr><td class="docs">
+  (set (for [x xs, y ys :when (not= x y)] #{x y})))</pre></td></tr><tr><td class="docs"><p>A special case of <code>uprod</code>, this function takes a set $X$ and
+outputs
+$$
+[X]^2 = \{ \{x,x'\} \mid x,x' \in X \wedge x \neq x' \}.
+$$</p>
 </td><td class="codes"><pre class="brush: clojure">(defn upow2 [xs]
-  (uprod xs xs))</pre></td></tr><tr><td class="docs">
+  (uprod xs xs))</pre></td></tr><tr><td class="docs"><p>This function takes an alphabet $\Sigma$ and returns lazy sequence
+listing the elements of $\Sigma^*$ in canonical order. (See
+[Martin] page 18.)</p>
 </td><td class="codes"><pre class="brush: clojure">(defn kleene* [&amp; xs]
   (if (empty? xs)
     (list )
