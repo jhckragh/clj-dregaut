@@ -264,4 +264,39 @@
   (let [m (dfa/create #{0} #{\a \b} 0 #{} (fn [q c] 0))]
     (is (nil? (dfa/shortest-example m)))))
 
+(deftest minimize-test
+  (let [m (dfa/minimize (dfa/create #{0 1 2 3 4 5 6 7 8 9}
+                                    #{\a \b}
+                                    0
+                                    #{3 4 8 9}
+                                    #(get-in
+                                      {0 {\a 1, \b 9}
+                                       1 {\a 8, \b 2}
+                                       2 {\a 3, \b 2}
+                                       3 {\a 2, \b 4}
+                                       4 {\a 5, \b 8}
+                                       5 {\a 4, \b 5}
+                                       6 {\a 7, \b 5}
+                                       7 {\a 6, \b 5}
+                                       8 {\a 1, \b 3}
+                                       9 {\a 7, \b 8}}
+                                      [%1 %2])))]
+    (is (= (:states m) #{#{0} #{1 2 5} #{3 4 8} #{6 7} #{9}}))
+    (is (= (:alphabet m) #{\a \b}))
+    (is (= (:initial m) #{0}))
+    (is (= (:accept m) #{#{3 4 8} #{9}}))
 
+    (is (= ((:delta m) #{0} \a) #{1 2 5}))
+    (is (= ((:delta m) #{0} \b) #{9}))
+
+    (is (= ((:delta m) #{1 2 5} \a) #{3 4 8}))
+    (is (= ((:delta m) #{1 2 5} \b) #{1 2 5}))
+
+    (is (= ((:delta m) #{3 4 8} \a) #{1 2 5}))
+    (is (= ((:delta m) #{3 4 8} \b) #{3 4 8}))
+
+    (is (= ((:delta m) #{6 7} \a) #{6 7}))
+    (is (= ((:delta m) #{6 7} \b) #{1 2 5}))
+
+    (is (= ((:delta m) #{9} \a) #{6 7}))
+    (is (= ((:delta m) #{9} \b) #{3 4 8}))))
